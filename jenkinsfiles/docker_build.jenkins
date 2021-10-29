@@ -8,12 +8,14 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
         timestamps()
     }
-    stage("create docker image") {
-            steps {
-                echo " ============== start building image =================="
-                dir ('docker/toolbox') {
+	stages {
+    		stage("create docker image") {
+			steps {
+                	echo " ============== start building image =================="
+                	dir ('docker/toolbox') {
                 	sh 'docker build .'
-               }
-         }
-    }
+				}
+			}
+		}
+	}
 }
